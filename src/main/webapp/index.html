@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Formulário</title>
+    </head>
+    <body>
+
+        <form action="" method="post">
+            <input type="text" placeholder="Insira o título do livro aqui" name="titulo"><br>
+            <input type="text" placeholder="Insira o autor do livro aqui" name="autor"><br>
+            <input type="text" placeholder="Insira o gênero do livro aqui" name="genero"><br>
+            <input type="text" placeholder="Insira a editora do livro aqui" name="editora"><br>
+
+            <label for="linguas">Em qual(quais) língua o livro está disponível?</label>
+            <input type="checkbox" name="linguas" value="portugues" id=""> Português
+            <input type="checkbox" name="linguas" value="ingles" id=""> Inglês
+            <input type="checkbox" name="linguas" value="espanhol" id=""> Espanhol
+            <input type="checkbox" name="linguas" value="outras" id=""> Outras
+
+            <textarea placeholder="Insira a sua avaliação aqui" name="avaliacao" cols="200" rows="100"></textarea><br>
+            
+            <label for="anoLancamento">Ano de lançamento: </label>
+            <input type="date" name="anoLancamento" id="anoLancamento">
+
+            <label for="qtdPgsTotal">Insira a quantidade de páginas do livro aqui: </label>
+            <input type="number" id="qtdPgsTotal" name="qtdPgsTotal"><br>
+            <label for="qtdPgsLidas">Insira a quantidade de páginas lidas do livro aqui: </label>
+            <input type="number" id="qtdPgsLidas" name="qtdPgsLidas"><br>
+
+            <input type="submit" value="Enviar">            
+        </form>
+    </body>
+</html>
