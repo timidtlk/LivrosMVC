@@ -25,19 +25,19 @@ public class LivroController extends HttpServlet {
 		String autor = request.getParameter("autor");
 		String genero = request.getParameter("genero");
 		String editora = request.getParameter("editora");
-		String[] linguas = request.getParameterValues("linguas");
+		String linguas = request.getParameter("linguas");
 		String avaliacao = request.getParameter("avaliacao");
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		LocalDate anoLancamento = LocalDate.now();
 		
 		try {
-			anoLancamento = formatter.parse(request.getParameter("anoAvaliacao")).toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+			anoLancamento = formatter.parse(request.getParameter("anoLancamento")).toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 		} catch (ParseException e) {
 			e.printStackTrace();
 		};
 		
-		int qtdPgsTotal = Integer.parseInt(request.getParameter("qtdPgsTotal"));
-		int qtdPgsLidas = Integer.parseInt(request.getParameter("qtdPgsLidas"));
+		double qtdPgsTotal = Double.parseDouble(request.getParameter("qtdPgsTotal"));
+		double qtdPgsLidas = Double.parseDouble(request.getParameter("qtdPgsLidas"));
 		
 		LivroDTO livro = new LivroDTO(titulo, autor, genero, editora, linguas, avaliacao, anoLancamento, qtdPgsTotal, qtdPgsLidas);
 		
@@ -46,7 +46,7 @@ public class LivroController extends HttpServlet {
 		
 		request.setAttribute("idade", livro.getIdadeLivro());
 		request.setAttribute("estimativa", livro.getEstimativaLeitura());
-		request.setAttribute("porcentagem", livro.getProgressoPcent());
+		request.setAttribute("porcentagem", String.format("%.1f", livro.getProgressoPcent()));
 		request.setAttribute("linguas", livro.getQtdLinguas());
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/resposta.jsp");

@@ -3,33 +3,62 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Formulário</title>
+        <link rel="icon" type="image/x-icon" href="livros.png">
+        <link rel="stylesheet" href="css/index.css">
+        <title>Adicionar livro</title>
     </head>
     <body>
-
-        <form action="" method="post">
-            <input type="text" placeholder="Insira o título do livro aqui" name="titulo"><br>
-            <input type="text" placeholder="Insira o autor do livro aqui" name="autor"><br>
-            <input type="text" placeholder="Insira o gênero do livro aqui" name="genero"><br>
-            <input type="text" placeholder="Insira a editora do livro aqui" name="editora"><br>
-
-            <label for="linguas">Em qual(quais) língua o livro está disponível?</label>
-            <input type="checkbox" name="linguas" value="portugues" id=""> Português
-            <input type="checkbox" name="linguas" value="ingles" id=""> Inglês
-            <input type="checkbox" name="linguas" value="espanhol" id=""> Espanhol
-            <input type="checkbox" name="linguas" value="outras" id=""> Outras
-
-            <textarea placeholder="Insira a sua avaliação aqui" name="avaliacao" cols="200" rows="100"></textarea><br>
-            
-            <label for="anoLancamento">Ano de lançamento: </label>
-            <input type="date" name="anoLancamento" id="anoLancamento">
-
-            <label for="qtdPgsTotal">Insira a quantidade de páginas do livro aqui: </label>
-            <input type="number" id="qtdPgsTotal" name="qtdPgsTotal"><br>
-            <label for="qtdPgsLidas">Insira a quantidade de páginas lidas do livro aqui: </label>
-            <input type="number" id="qtdPgsLidas" name="qtdPgsLidas"><br>
-
-            <input type="submit" value="Enviar">            
-        </form>
+        <main>
+            <section id="titulo_pag">
+                <h1>Adicione um livro a sua lista</h1>
+            </section>
+            <section id="formulario">
+                <form action="Livro" method="post">
+                    <p>
+                        <label for="titulo"></label>
+                        <input type="text" id="titulo" name="titulo" placeholder="Título do livro" required>
+                    </p>
+                    <p>
+                        <label for="autor"></label>
+                        <input type="text" id="autor" name="autor" placeholder="Autor" required>
+                    </p>
+                    <p>
+                        <label for="genero"></label>
+                        <input type="text" id="genero" name="genero" placeholder="Gênero" required>
+                    </p>
+                    <p>
+                        <label for="editora"></label>
+                        <input type="text" id="editora" name="editora" placeholder="Editora" required>
+                    </p>
+                    <p>
+                        <label for="ano"></label>
+                        <input type="date" id="ano" name="anoLancamento" placeholder="Ano de lançamento" required>
+                    </p>
+                    <p>
+                        <label for="qtdPgsTotal"></label>
+                        <input type="number" id="qtdPgsTotal" name="qtdPgsTotal" placeholder="Quantidade de páginas" min="0" required>
+                    </p>
+                    <p>
+                        <label for="qtdPgsLidas"></label>
+                        <input type="number" id="qtdPgsLidas" name="qtdPgsLidas" placeholder="Quantidade de páginas lidas" min="0" required>
+                    </p>
+                    <p>
+                        <label for="linguas"></label>
+                        <input type="text" id="linguas" name="linguas" placeholder="Línguas disponíveis" required>
+                    </p>
+                    <p>
+                        <label for="avaliacao"></label>
+                        <input type="text" id="avaliacao" name="avaliacao" placeholder="Avaliação" required>
+                    </p>
+                    <p>
+                        <input type="submit" value="ADICIONAR" id="botao">
+                    </p>
+                </form>
+            </section>
+        </main>
+        <script>
+            var ano = document.getElementById("ano")
+            ano.max = new Date().toISOString().split('T')[0]
+        </script>
     </body>
 </html>

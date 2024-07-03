@@ -8,11 +8,11 @@ public record LivroDTO(
 		String autor, 
 		String genero, 
 		String editora, 
-		String[] linguas,
+		String linguas,
 		String avaliacao,
 		LocalDate anoLancamento,
-		int qtdPaginasTotal,
-		int qtdPaginasLidas
+		double qtdPaginasTotal,
+		double qtdPaginasLidas
 	) {
 	
 	public int getIdadeLivro() {
@@ -22,7 +22,7 @@ public record LivroDTO(
 	}
 	
 	public int[] getEstimativaLeitura() {
-		int tempoTotal = this.qtdPaginasTotal * 60;
+		double tempoTotal = this.qtdPaginasTotal * 60;
 		
 		int s = 0, m = 0, h = 0;
 		
@@ -39,11 +39,11 @@ public record LivroDTO(
 		return tempo;
 	}
 	
-	public int getProgressoPcent() {
-		return (int) Math.round((qtdPaginasLidas / qtdPaginasTotal) * 100);
+	public double getProgressoPcent() {
+		return (double) Math.round((qtdPaginasLidas / qtdPaginasTotal) * 100.0);
 	}
 	
 	public int getQtdLinguas() {
-		return linguas.length;
+		return linguas.split(",").length;
 	}
 }
