@@ -6,9 +6,20 @@
     <servlet-name>LivroController</servlet-name>
     <servlet-class>controller.LivroController</servlet-class>
   </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>Controller</display-name>
+  	<servlet-name>Controller</servlet-name>
+  	<servlet-class>controller.Controller</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>LivroController</servlet-name>
     <url-pattern>/LivroController</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>Controller</servlet-name>
+  	<url-pattern>/Controller</url-pattern>
   </servlet-mapping>
   <display-name>LivrosMVC</display-name>
   <welcome-file-list>

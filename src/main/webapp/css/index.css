@@ -70,7 +70,7 @@ input[type="date"]::-webkit-calendar-picker-indicator{
     margin: 5px;
 }
 
-form #botao{
+form .botao{
     transform-origin: 50% 50% 0;
     transition: 0.7s;
     background-color: #b5bac9;
@@ -83,7 +83,7 @@ form #botao{
     font-size: 30px;
 }
 
-form #botao:hover{
+form .botao:hover{
     transform: scale(1.2);
     background-color: #e9ad75;
     border: 2px solid #e9ad75;

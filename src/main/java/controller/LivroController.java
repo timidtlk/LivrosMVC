@@ -6,6 +6,9 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 
+import javax.sql.DataSource;
+
+import jakarta.annotation.Resource;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -13,14 +16,48 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.LivroDTO;
+import model.LivroDAO;
 
 @WebServlet("/Livro")
 public class LivroController extends HttpServlet {
 	
 	private static final long serialVersionUID = 820928843794152937L;
+	
+	private LivroDAO lDAO;
+	@Resource(name="bancoTarefas")
+	private DataSource dataSource;
+	
+	@Override
+	public void init() throws ServletException{
+		lDAO = new LivroDAO(dataSource);
+	}
 
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String operacao = request.getParameter("operacao");
+    	operacao = operacao.toLowerCase();
+		
+		switch (operacao) {
+			case "listar":
+				listarLivro(request, response);
+				break;
+		}
+	}
+
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		String operacao = request.getParameter("operacao");
+    	operacao = operacao.toLowerCase();
+		
+		switch (operacao) {
+			case "adicionar":
+				cadastrarLivro(request, response);
+				break;
+		}
+	}
+	
+	private void cadastrarLivro(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String titulo = request.getParameter("titulo");
 		String autor = request.getParameter("autor");
 		String genero = request.getParameter("genero");
@@ -39,18 +76,12 @@ public class LivroController extends HttpServlet {
 		double qtdPgsTotal = Double.parseDouble(request.getParameter("qtdPgsTotal"));
 		double qtdPgsLidas = Double.parseDouble(request.getParameter("qtdPgsLidas"));
 		
-		LivroDTO livro = new LivroDTO(titulo, autor, genero, editora, linguas, avaliacao, anoLancamento, qtdPgsTotal, qtdPgsLidas);
-		
-		request.setAttribute("titulo", titulo);
-		request.setAttribute("autor", autor);
-		
-		request.setAttribute("idade", livro.getIdadeLivro());
-		request.setAttribute("estimativa", livro.getEstimativaLeitura());
-		request.setAttribute("porcentagem", String.format("%.1f", livro.getProgressoPcent()));
-		request.setAttribute("linguas", livro.getQtdLinguas());
-		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/resposta.jsp");
 		dispatcher.forward(request, response);
+	}
+	
+	private void listarLivro(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 	}
 
 }
